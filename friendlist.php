@@ -8,7 +8,7 @@ require_once("functions/settings.php");                 // Include the database 
 
 $conn = @mysqli_connect($host, $user, $pswd, $db);      // Database connection
 
-$friend_count = 0;
+$friends_count = 0;
 $profile_name = isset($_SESSION['profile_name']) ? $_SESSION['profile_name'] : '';
 $friends_list = [];                                     // Array to store friends
 if (!$conn) {
@@ -41,8 +41,9 @@ if (!$conn) {
         // Fetch friends and update the friend count
         while ($friend_row = mysqli_fetch_assoc($friends_result)) {
             $friends_list[] = $friend_row['profile_name'];
+            $friends_count++;
         }
-        $friends_count = count($friends_list); // Update the total number of friends
+
 
         mysqli_stmt_close($stmt);
     }
@@ -64,36 +65,40 @@ if (!$conn) {
 
 <body>
     <div class="flex flex-col items-center my-4 border-2 border-slate-500 rounded-lg w-[80%] mx-auto">
-        <h1 class="text-3xl">My friend System</h1>
-        <h1><?php echo $profile_name; ?>'s Friend List Page</h1>
-        <h1>Total number of friends is <?php echo $friend_count ?>.</h1>
-        <table class="border-solid border-2 border-slate-500">
-            <thead>
-                <tr>
-                    <th>Friend</th>
-                    <th>Option</th>
-                </tr>
-            </thead>
-            <tbody class="border-solid border-2 border-slate-500">
-                <?php if ($friends_count > 0): ?>
-                    <?php foreach ($friends_list as $friend_name): ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($friend_name); ?></td>
-                            <td>
-                                <form action="unfriend.php" method="POST">
-                                    <input type="hidden" name="friend_name" value="<?php echo htmlspecialchars($friend_name); ?>">
-                                    <button type="submit" class="bg-red-500 p-2 rounded-lg text-white">Unfriend</button>
-                                </form>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                <?php else: ?>
+        <div class="my-4">
+            <h1 class="text-3xl">My friend System</h1>
+            <h1><strong><?php echo $profile_name; ?></strong>'s Friend List Page</h1>
+            <h1>Total number of friends is <strong><?php echo $friends_count ?></strong>.</h1>
+        </div>
+        <div>
+            <table class="border-solid border-2 border-slate-500">
+                <thead>
                     <tr>
-                        <td colspan="2">No friends found.</td>
+                        <th>Friend</th>
+                        <th>Option</th>
                     </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody class="border-solid border-2 border-slate-500">
+                    <?php if ($friends_count > 0): ?>
+                        <?php foreach ($friends_list as $friend_name): ?>
+                            <tr>
+                                <td class="px-2"><?php echo htmlspecialchars($friend_name); ?></td>
+                                <td class="px-2">
+                                    <form action="functions/unfriend.php" method="POST">
+                                        <input type="hidden" name="friend_name" value="<?php echo htmlspecialchars($friend_name); ?>">
+                                        <button type="submit" class="bg-red-500 p-2 rounded-lg text-white">Unfriend</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="2">No friends found.</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
 
         <div class="flex justify-around my-4">
             <a href="friendadd.php"><button class="bg-blue-500 p-2 rounded-lg text-white">Add Friends</button></a>
