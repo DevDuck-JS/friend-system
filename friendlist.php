@@ -116,19 +116,23 @@ if (!$conn) {
             </table>
         </div>
 
+        <!-- Pagination Controls -->
+
         <div class="flex justify-around my-4">
-            <!-- Pagination Controls -->
             <div>
                 <?php if ($current_page > 1): ?>
                     <a href="?page=<?php echo $current_page - 1; ?>" class="bg-gray-500 p-2 rounded-lg">
-                        < Previou</a>
+                        < Previous</a>
                         <?php endif; ?>
+
+                        <span class="p-2">Page <?php echo $current_page; ?> of <?php echo $total_pages; ?></span>
 
                         <?php if ($current_page < $total_pages): ?>
                             <a href="?page=<?php echo $current_page + 1; ?>" class="bg-gray-500 p-2 rounded-lg">Next ></a>
                         <?php endif; ?>
             </div>
         </div>
+
 
         <div class="flex justify-around my-4">
             <a href="friendadd.php"><button class="bg-blue-500 p-2 rounded-lg text-white">Add Friends</button></a>
