@@ -1,9 +1,13 @@
 <?php
+
+echo 'Current PHP version: ' . phpversion();
+
+
 // Enable error reporting for debugging during development
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-// Include the database connection details and the HitCounter class
 
+// Include the database connection details and the HitCounter class
 require_once("functions/settings.php");
 
 $conn = @mysqli_connect($host, $user, $pswd, $db);
@@ -76,6 +80,8 @@ if (!$conn) {
     (10, 5);
   ";
 
+  // Create tables
+
   $queryResult_friends = @mysqli_query($conn, $sql_create_friends);
 
   if ($queryResult_friends) {
@@ -96,19 +102,43 @@ if (!$conn) {
     $table_msg = "Table successfully created and populated.";
   }
 
-  $queryResult_pop_friends = @mysqli_query($conn, $sql_pop_friends);
-  if ($queryResult_friends) {
-    $friends_pop_msg = "Successfully populated the <strong>my friends</strong> table.";
+
+
+  // Populate tables
+  // Check if the 'friends' table is already populated
+  $check_friends = "SELECT COUNT(*) AS count FROM friends";
+  $result_friends = @mysqli_query($conn, $check_friends);
+  $row_friends = mysqli_fetch_assoc($result_friends);
+  $friends_count = $row_friends['count'];
+
+  // Populate the 'friends' table only if it's not already populated
+  if ($friends_count == 0) {
+    $queryResult_pop_friends = @mysqli_query($conn, $sql_pop_friends);
+    if ($queryResult_pop_friends) {
+      $friends_pop_msg = "Successfully populated the <strong>friends</strong> table.";
+    } else {
+      $friends_pop_msg = "Error code " . mysqli_errno($conn) . ": " . mysqli_error($conn);
+    }
   } else {
-    $friends_pop_msg = "Error code " . mysqli_errno($conn) . ": " . mysqli_error($conn);
+    $friends_pop_msg = "<strong>friends</strong> table is already populated.";
   }
 
-  $queryResult_pop_friends = @mysqli_query($conn, $sql_pop_myfriends);
+  // Check if the 'myfriends' table is already populated
+  $check_myfriends = "SELECT COUNT(*) AS count FROM myfriends";
+  $result_myfriends = @mysqli_query($conn, $check_myfriends);
+  $row_myfriends = mysqli_fetch_assoc($result_myfriends);
+  $myfriends_count = $row_myfriends['count'];
 
-  if ($queryResult_myfriends) {
-    $myfriends_pop_msg = "Successfully populated the <strong>my friends</strong> table.";
+  // Populate the 'myfriends' table only if it's not already populated
+  if ($myfriends_count == 0) {
+    $queryResult_pop_myfriends = @mysqli_query($conn, $sql_pop_myfriends);
+    if ($queryResult_pop_myfriends) {
+      $myfriends_pop_msg = "Successfully populated the <strong>myfriends</strong> table.";
+    } else {
+      $myfriends_pop_msg = "Error code " . mysqli_errno($conn) . ": " . mysqli_error($conn);
+    }
   } else {
-    $myfriends_pop_msg = "Error code " . mysqli_errno($conn) . ": " . mysqli_error($conn);
+    $myfriends_pop_msg = "<strong>myfriends</strong> table is already populated.";
   }
 }
 
@@ -122,51 +152,60 @@ if (!$conn) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="./css/style.css" />
-  <title>My Friend System</title>
+  <title>My Friend System | Home</title>
 </head>
 
 <body>
-  <div class="container my-10 px-10 mx-auto border-solid border-2 rounded-xl border-red-100">
-    <div class="flex flex-col items-center my-4">
-      <h1 class="text-3xl">My friend System</h1>
-      <h1>Assigment Home Page</h1>
-    </div>
-
-    <!-- Flex for Name & ID -->
-    <div class="flex flex-row justify-between my-3">
-      <div class="flex-col">
-        <p>Name: Jinjuta Suksuwan</p>
-        <p>Email: 103818112@student.swin.edu.au</p>
+  <div class="container px-10">
+    <div class="my-10 mx-10 px-10 border-solid border-2 rounded-xl border-red-100">
+      <div class="flex flex-col items-center my-4">
+        <h1 class="text-3xl">My friend System</h1>
+        <h1>Assigment Home Page</h1>
       </div>
-      <div class="flex-col">
-        <p>Student ID: 103818112</p>
 
+      <!-- Flex for Name & ID -->
+      <div class="flex flex-row justify-between my-3">
+        <div class="flex-col">
+          <p>Name: Jinjuta Suksuwan</p>
+          <p>Email: 103818112@student.swin.edu.au</p>
+        </div>
+        <div class="flex-col">
+          <p>Student ID: 103818112</p>
+
+        </div>
       </div>
-    </div>
 
-    <div class="my-4">
-      <p>
-        I declare that this assignment is my individual work. I have not worked
-        collaboratively nor have I copied from any other student's work or from
-        any other source.
-      </p>
-    </div>
+      <div class="my-4">
+        <p>
+          I declare that this assignment is my individual work. I have not worked
+          collaboratively nor have I copied from any other student's work or from
+          any other source.
+        </p>
+      </div>
 
-    <!-- Echo from PHP -->
-    <!-- Create tables -->
+      <!-- Echo from PHP -->
+      <!-- Create tables -->
 
-    <p><?php echo $friends_msg; ?></p>
-    <p><?php echo $myfriends_msg; ?></p>
-    <p><?php echo $table_msg; ?></p>
-    <!-- Populate tables -->
-    <p><?php echo $friends_pop_msg; ?></p>
-    <p><?php echo $myfriends_pop_msg; ?></p>
+      <p><?php echo $friends_msg; ?></p>
+      <p><?php echo $myfriends_msg; ?></p>
+      <p><?php echo $table_msg; ?></p>
+      <!-- Populate tables -->
+      <p><?php echo $friends_pop_msg; ?></p>
+      <p><?php echo $myfriends_pop_msg; ?></p>
 
-    <div class="flex flex-row justify-between my-4">
+      <div class="flex flex-row justify-between my-4">
 
-      <button href="#" class="bg-blue-500 p-2 rounded-lg text-white">Sign up</button>
-      <button href="#" class="bg-red-500 p-2 rounded-lg text-white">Log in</button>
-      <button href="#" class="bg-orange-500 p-2 rounded-lg text-white">Hey</button>
+        <a href="signup.php">
+
+          <button class="bg-blue-500 p-2 rounded-lg text-white">Sign up</button>
+        </a>
+        <a href="#">
+          <button class="bg-red-500 p-2 rounded-lg text-white">Log in</button>
+        </a>
+        <a href="#">
+          <button class="bg-orange-500 p-2 rounded-lg text-white">About</button>
+        </a>
+      </div>
     </div>
   </div>
 
