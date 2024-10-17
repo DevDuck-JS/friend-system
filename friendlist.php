@@ -30,7 +30,8 @@ if (!$conn) {
         SELECT f.profile_name
         FROM myfriends mf
         JOIN friends f ON mf.friend_id2 = f.friend_id
-        WHERE mf.friend_id1 = ?";
+        WHERE mf.friend_id1 = ?
+        ORDER BY f.profile_name";
 
         $stmt = mysqli_prepare($conn, $friends_query);
         mysqli_stmt_bind_param($stmt, 'i', $current_user_id);
@@ -66,7 +67,7 @@ if (!$conn) {
     <div class="flex flex-col items-center my-4 border-2 border-slate-500 rounded-lg w-[80%] mx-auto">
         <div class="my-4">
             <h1 class="text-3xl">My friend System</h1>
-            <h1><strong><?php echo $profile_name; ?></strong>'s Friend List Page</h1>
+            <h1><strong><?php echo $profile_name; ?></strong>'s Friend Add Page</h1>
             <h1>Total number of friends is <strong><?php echo $friends_count ?></strong>.</h1>
         </div>
         <div>
