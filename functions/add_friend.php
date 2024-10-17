@@ -1,12 +1,12 @@
 <?php
-session_start(); // Start the session
+session_start();                                                    // Start the session
 
-error_reporting(E_ALL); // Enable error reporting for debugging during development
+error_reporting(E_ALL);                                             // Enable error reporting for debugging during development
 ini_set('display_errors', 1);
 
-require_once("settings.php"); // Include the database connection details
+require_once("settings.php");                                       // Include the database connection details
 
-$conn = @mysqli_connect($host, $user, $pswd, $db); // Database connection
+$conn = @mysqli_connect($host, $user, $pswd, $db);                  // Database connection
 
 if (!$conn) {
     echo "Database connection failure";
