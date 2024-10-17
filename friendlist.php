@@ -14,7 +14,6 @@ $friends_list = [];                                     // Array to store friend
 if (!$conn) {
     $conn_msg = "<p>Database connection failure</p>";
 } else {
-    // query using this user's friend_id attribute in "friends" table as friend_id1 attribute in "myfriends" table to find friend_id2 attribute's values associated with this friend_id1's values.
     // Fetch the logged-in user's friend_id from the "friends" table using their email
     $email = $_SESSION['email'];
     $query = "SELECT friend_id FROM friends WHERE friend_email = ?";
@@ -24,9 +23,9 @@ if (!$conn) {
     $result = mysqli_stmt_get_result($stmt);
 
     if ($row = mysqli_fetch_assoc($result)) {
-        $friend_id = $row['friend_id'];
+        $current_user_id = $row['friend_id'];
 
-        // Now query the "myfriends" table to find friends associated with this friend_id
+        // Query the "myfriends" table to find friends associated with this friend_id
         $friends_query = "
         SELECT f.profile_name
         FROM myfriends mf
@@ -34,7 +33,7 @@ if (!$conn) {
         WHERE mf.friend_id1 = ?";
 
         $stmt = mysqli_prepare($conn, $friends_query);
-        mysqli_stmt_bind_param($stmt, 'i', $friend_id);
+        mysqli_stmt_bind_param($stmt, 'i', $current_user_id);
         mysqli_stmt_execute($stmt);
         $friends_result = mysqli_stmt_get_result($stmt);
 
@@ -47,7 +46,7 @@ if (!$conn) {
 
         mysqli_stmt_close($stmt);
     }
-    mysqli_close($conn); // Close the connection
+    mysqli_close($conn);                    // Close the connection
 }
 
 
