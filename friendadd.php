@@ -48,7 +48,11 @@ if (!$conn) {
 
         // Query to list all users who are not friends of the current user, with pagination
         $potential_friends_query = "
-            SELECT f.profile_name, f.friend_id
+            SELECT f.profile_name, f.friend_id,
+            (SELECT COUNT(*) 
+             FROM myfriends mf1 
+             JOIN myfriends mf2 ON mf1.friend_id2 = mf2.friend_id2 
+             WHERE mf1.friend_id1 = ? AND mf2.friend_id1 = f.friend_id) AS mutual_friends
             FROM friends f
             WHERE f.friend_id != ? AND f.friend_id NOT IN (
                 SELECT mf.friend_id2 FROM myfriends mf WHERE mf.friend_id1 = ?
@@ -56,15 +60,16 @@ if (!$conn) {
             ORDER BY f.profile_name
             LIMIT ? OFFSET ?";
         $stmt = mysqli_prepare($conn, $potential_friends_query);
-        mysqli_stmt_bind_param($stmt, 'iiii', $current_user_id, $current_user_id, $results_per_page, $offset);
+        mysqli_stmt_bind_param($stmt, 'iiiii', $current_user_id, $current_user_id, $current_user_id, $results_per_page, $offset);
         mysqli_stmt_execute($stmt);
         $friends_result = mysqli_stmt_get_result($stmt);
 
-        // Fetch potential friends
+        // Fetch potential friends and their mutual friend count
         while ($friend_row = mysqli_fetch_assoc($friends_result)) {
             $potential_friends[] = [
                 'profile_name' => $friend_row['profile_name'],
-                'friend_id' => $friend_row['friend_id']
+                'friend_id' => $friend_row['friend_id'],
+                'mutual_friends' => $friend_row['mutual_friends']
             ];
         }
 
@@ -97,6 +102,7 @@ if (!$conn) {
                     <tr>
                         <th>Potential Friend</th>
                         <th>Option</th>
+                        <th>Mutual Friends</th>
                     </tr>
                 </thead>
                 <tbody class="border-solid border-2 border-slate-500">
@@ -110,11 +116,15 @@ if (!$conn) {
                                         <button type="submit" class="bg-green-500 p-2 rounded-lg text-white">Add Friend</button>
                                     </form>
                                 </td>
+                                <td class="text-center">
+                                    <!-- Display mutual friend count -->
+                                    <?php echo htmlspecialchars($friend['mutual_friends']); ?>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="2">No potential friends found.</td>
+                            <td colspan="3">No potential friends found.</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>
