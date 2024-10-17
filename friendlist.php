@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css" />
 
-    <title>My Friend System | Friend Add</title>
+    <title>My Friend System | Friend List</title>
 </head>
 
 <body>
     <div class="flex flex-col items-center my-4">
         <h1 class="text-3xl">My friend System</h1>
-        <h1>Friend Add Page</h1>
+        <h1>Friend List Page</h1>
     </div>
 
 </body>

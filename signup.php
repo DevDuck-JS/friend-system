@@ -66,11 +66,10 @@ if (!$conn) {
         }
 
         if ($is_valid) {                                                                    // If all validations pass, insert data       
-            $hashed_password = hash('sha256', $password);                  // Hash the password
             $date_started = date('Y-m-d'); // Current server date
             $insert_query = "INSERT INTO friends (friend_email, password, profile_name, date_started, num_of_friends) VALUES (?, ?, ?, ?, 0)";
             $stmt = mysqli_prepare($conn, $insert_query);
-            mysqli_stmt_bind_param($stmt, 'ssss', $email, $hashed_password, $profile_name, $date_started);
+            mysqli_stmt_bind_param($stmt, 'ssss', $email, $password, $profile_name, $date_started);
 
             if (mysqli_stmt_execute($stmt)) {
                 // Registration successful, set session variables
@@ -108,10 +107,10 @@ if (!$conn) {
 
 <body>
     <form action="signup.php" method="POST">
-        <div class="container w-[80%] px-10 mx-auto my-10 border-solid border-2 rounded-xl border-red-100">
+        <div class="container w-[50%] px-10 mx-auto my-10 border-solid border-2 rounded-xl border-red-100">
             <div class="flex flex-col items-center my-4">
                 <h1 class="text-3xl">My friend System</h1>
-                <h1>Assignment Home Page</h1>
+                <h1>Registration Page</h1>
             </div>
 
             <!-- Flex for Name & ID -->

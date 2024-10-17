@@ -157,7 +157,7 @@ if (!$conn) {
 
 <body>
   <div class="container px-10">
-    <div class="my-10 mx-10 px-10 border-solid border-2 rounded-xl border-red-100">
+    <div class="my-10 w-[75%] mx-auto px-10 border-solid border-2 rounded-xl border-red-100">
       <div class="flex flex-col items-center my-4">
         <h1 class="text-3xl">My friend System</h1>
         <h1>Assigment Home Page</h1>
@@ -196,13 +196,12 @@ if (!$conn) {
       <div class="flex flex-row justify-between my-4">
 
         <a href="signup.php">
-
           <button class="bg-blue-500 p-2 rounded-lg text-white">Sign up</button>
         </a>
-        <a href="#">
+        <a href="login.php">
           <button class="bg-red-500 p-2 rounded-lg text-white">Log in</button>
         </a>
-        <a href="#">
+        <a href="about.php">
           <button class="bg-orange-500 p-2 rounded-lg text-white">About</button>
         </a>
       </div>
