@@ -134,7 +134,7 @@ if (!$conn) {
                         <!-- Email -->
                         <div class="d-flex">
                             <label for="email" class="text-slate-400">Email</label>
-                            <input type="text" name="email" class="w-full p-6 border border-gray-300 rounded-md placeholder:font-light"
+                            <input type="text" name="email" class="w-full text-slate-700 p-6 border border-gray-300 rounded-md placeholder:font-light"
 
                                 value="<?php echo htmlspecialchars($email); ?>" placeholder="kangaroo@zoo.com.au">
 
@@ -148,7 +148,7 @@ if (!$conn) {
                             <label for="profile" class="text-slate-400">Profile Name</label>
                             <input type="text" name="profile"
 
-                                class="w-full p-6 border border-gray-400 rounded-md placeholder:font-light"
+                                class="w-full text-slate-700 p-6 border border-gray-400 rounded-md placeholder:font-light"
 
                                 value="<?php echo htmlspecialchars($profile_name); ?>" placeholder="kangaroo">
                             <!-- Display profile name error message -->
@@ -160,7 +160,7 @@ if (!$conn) {
                             <label for="password" class="text-slate-400">Password</label>
                             <input type="password" name="password" placeholder="**********"
 
-                                class="w-full p-6 border border-gray-400 rounded-md placeholder:font-light">
+                                class="w-full text-slate-700 p-6 border border-gray-400 rounded-md placeholder:font-light">
                             <!-- Display password error message -->
                             <?php if (!empty($password_error)) echo "<p class='text-red-500 mt-2'>$password_error</p>"; ?>
                         </div>
@@ -171,7 +171,7 @@ if (!$conn) {
                             <label for="c_password" class="text-slate-400">Confirm Password</label>
                             <input type="password" name="c_password" placeholder="**********"
 
-                                class="w-full p-6 border border-gray-300 rounded-md placeholder:font-light">
+                                class="w-full text-slate-700 p-6 border border-gray-300 rounded-md placeholder:font-light">
                             <!-- Display confirm password error message -->
                             <?php if (!empty($confirm_password_error)) echo "<p class='text-red-500 mt-2'>$confirm_password_error</p>"; ?>
                         </div>
