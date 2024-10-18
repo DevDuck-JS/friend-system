@@ -88,7 +88,7 @@
 
                         <div class="px-10 p-4">
                             <p class=" mb-3 font-normal text-gray-700 dark:text-gray-400">
-                                Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.
+                                Replying to a thread regarding issus about database connection.
                             </p>
                         </div>
                     </div>
@@ -98,7 +98,7 @@
 
                         <div class="px-10 p-4">
                             <p class=" mb-3 font-normal text-gray-700 dark:text-gray-400">
-                                Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.
+                                Replying to a thread regarding issus about OOP requirement.
                             </p>
                         </div>
                     </div>
