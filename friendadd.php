@@ -137,7 +137,7 @@ if (!$conn) {
                                     <button type="submit" class="bg-red-500 p-2 rounded-lg text-white">Add friend</button>
                                 </form>
                             </div>
-                            <div class="w-1/4">
+                            <div class="w-1/4 text-center">
                                 <!-- Display mutual friend count -->
                                 <?php echo htmlspecialchars($friend['mutual_friends']); ?>
                             </div>

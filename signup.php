@@ -48,8 +48,8 @@ if (!$conn) {
         }
 
         // Validate profile name (only letters and not blank)
-        if (empty($profile_name) || !preg_match("/^[a-zA-Z]+$/", $profile_name)) {
-            $profile_error = "Profile name can only contain letters and cannot be blank.";
+        if (empty($profile_name) || !preg_match("/^[a-zA-Z ]+$/", $profile_name)) {
+            $profile_error = "Profile name can only contain letters and spaces and cannot be blank.";
             $is_valid = false;
         }
 

@@ -152,12 +152,12 @@ if (!$conn) {
 
                 <!-- Buttons -->
                 <div class="flex flex-col item-center justify-between space-y-6 md:flex-row md:space-x-4 md:space-y-0 w-full">
-                    <!-- Register -->
+                    <!-- Add friend -->
                     <a href="friendadd.php">
                         <button type='button' class='w-full flex md:flex-grow  justify-center items-center p-4 space-x-4 font-bold text-zinc-800 rounded-md shadow-lg px-9 bg-lime-500 hover:bg-opacity-80 hover:shadow-md hover:shadow-lime-800 transition hover:-translate-y-0.5 duration-150'>Add new friends</button>
                     </a>
 
-                    <!-- Clear -->
+                    <!-- Log out -->
                     <a href="logout.php">
                         <button type='button' class="w-full flex md:flex-grow  justify-center items-center p-4 space-x-4  rounded-md shadow-lg px-9 outline-lime-500 hover:bg-opacity-80 hover:shadow-md hover:shadow-lime-800 border transition hover:-translate-y-0.5 duration-150">Log out
 
