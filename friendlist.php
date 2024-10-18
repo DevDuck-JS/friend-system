@@ -88,13 +88,15 @@ if (!$conn) {
             <!-- Card  -->
             <div class="flex flex-col bg-zinc-800 rounded-2xl px-20 p-10 my-4">
 
-                <!-- Form head -->
+                <!-- Friend head -->
                 <div class="flex flex-col items-center my-4 ">
                     <h1 class="text-3xl font-medium">My Friend System</h1>
                     <h1 class="mt-2"><strong><?php echo htmlspecialchars($profile_name); ?></strong>'s Friend List Page</h1>
 
                     <h1 class="text-sm">Total number of friends is <strong><?php echo $total_rows; ?></strong>.</h1>
                 </div>
+
+                <!-- Friend list -->
                 <div class="flex flex-row justify-between items-center border-b-2 border-slate-500 p-2">
                     <div class="font-bold">
                         Your Friends
@@ -146,11 +148,16 @@ if (!$conn) {
                 <!-- Buttons -->
                 <div class="flex flex-col item-center justify-between space-y-6 md:flex-row md:space-x-4 md:space-y-0 w-full">
                     <!-- Register -->
-                    <a href="friendadd.php"><button type='button' class='w-full flex md:flex-grow  justify-center items-center p-4 space-x-4 font-bold text-zinc-800 rounded-md shadow-lg px-9 bg-lime-500 hover:bg-opacity-80 hover:shadow-md hover:shadow-lime-800 transition hover:-translate-y-0.5 duration-150'>Add new friends</button></a>
+                    <a href="friendadd.php">
+                        <button type='button' class='w-full flex md:flex-grow  justify-center items-center p-4 space-x-4 font-bold text-zinc-800 rounded-md shadow-lg px-9 bg-lime-500 hover:bg-opacity-80 hover:shadow-md hover:shadow-lime-800 transition hover:-translate-y-0.5 duration-150'>Add new friends</button>
+                    </a>
 
                     <!-- Clear -->
                     <a href="logout.php">
-                        <button type='button' class="w-full flex md:flex-grow  justify-center items-center p-4 space-x-4  rounded-md shadow-lg px-9 outline-lime-500 hover:bg-opacity-80 hover:shadow-md hover:shadow-lime-800 border transition hover:-translate-y-0.5 duration-150">Log out</button></a>
+                        <button type='button' class="w-full flex md:flex-grow  justify-center items-center p-4 space-x-4  rounded-md shadow-lg px-9 outline-lime-500 hover:bg-opacity-80 hover:shadow-md hover:shadow-lime-800 border transition hover:-translate-y-0.5 duration-150">Log out
+
+                        </button>
+                    </a>
 
                 </div>
 
