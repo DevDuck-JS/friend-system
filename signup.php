@@ -113,13 +113,13 @@ if (!$conn) {
 </head>
 
 <body class="bg-zinc-700">
-    <div class="flex items-center justify-center h-screen text-white font-thin">
+    <div class="flex items-center justify-center text-white font-thin ">
 
         <!-- Parent container -->
-        <div class="flex flex-col mx-20">
+        <div class="flex flex-col mx-20 my-4">
 
             <!-- Card / Form -->
-            <div class="flex flex-col bg-zinc-800 rounded-2xl px-10 p-6">
+            <div class="flex flex-col bg-zinc-800 rounded-2xl px-10 p-6 my-4">
 
                 <!-- Form head -->
                 <div class="flex flex-col items-center my-4 ">

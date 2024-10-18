@@ -158,7 +158,7 @@ if (!$conn) {
   <div class="">
     <!-- Background / Parent container -->
     <div class="flex items-center justify-center h-screen text-white">
-      <div class="flex flex-col mx-20">
+      <div class="flex flex-col mx-20 m-4">
         <div class="bg-zinc-800 p-2 rounded-2xl">
           <!-- Card -->
           <div class="flex flex-col md:flex-row rounded-l-lg">
