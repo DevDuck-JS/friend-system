@@ -90,7 +90,7 @@ if (!$conn) {
 </head>
 
 <body>
-    <div class="flex flex-col items-center my-4 border-2 border-slate-500 rounded-lg w-[80%] mx-auto">
+    <div class="flex flex-col items-center my-4 border-2 border-slate-500 rounded-lg w-[80%] mx-auto bg-zinc-700">
         <div class="my-4">
             <h1 class="text-3xl">My Friend System</h1>
             <h1><strong><?php echo htmlspecialchars($profile_name); ?></strong>'s Friend Add Page</h1>

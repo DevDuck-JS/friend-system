@@ -1,6 +1,5 @@
 <?php
 
-echo 'Current PHP version: ' . phpversion();
 
 
 // Enable error reporting for debugging during development
@@ -99,7 +98,7 @@ if (!$conn) {
   }
 
   if ($queryResult_friends && $queryResult_myfriends) {
-    $table_msg = "Table successfully created and populated.";
+    $table_msg = "Tables have been successfully created and populated.";
   }
 
 
@@ -155,62 +154,120 @@ if (!$conn) {
   <title>My Friend System | Home</title>
 </head>
 
-<body>
-  <div class="container px-10">
-    <div class="my-10 w-[75%] mx-auto px-10 border-solid border-2 rounded-xl border-red-100">
-      <div class="flex flex-col items-center my-4">
-        <h1 class="text-3xl">My friend System</h1>
-        <h1>Assigment Home Page</h1>
-      </div>
+<body class="bg-zinc-700">
+  <div class="">
+    <!-- Background / Parent container -->
+    <div class="flex items-center justify-center h-screen text-white">
+      <div class="flex flex-col mx-20">
+        <div class="bg-zinc-800 p-2 rounded-2xl">
+          <!-- Card -->
 
-      <!-- Flex for Name & ID -->
-      <div class="flex flex-row justify-between my-3">
-        <div class="flex-col">
-          <p>Name: Jinjuta Suksuwan</p>
-          <p>Email: 103818112@student.swin.edu.au</p>
+          <div class="flex flex-col md:flex-row rounded-l-lg">
+            <!-- Image -->
+            <img
+              src="images/image.jpg"
+              alt=""
+              class="object-fit rounded-t-xl h-80 md:h-96 md:rounded-l-xl md:rounded-r-none transform hover:scale-105 hover:rounded-t-xl md:hover:scale-105 md:hover:rounded-l-xl md:hover:rounded-r-none" />
+
+
+            <!-- Content -->
+            <div class="p-2 md:-12 font-thin">
+              <div class="items-center my-4">
+                <h1 class="text-3xl font-medium text-center md:text-left px-4">My friend System</h1>
+                <h1 class="text-xl text-center md:text-left px-4">Assigment Home Page</h1>
+              </div>
+
+              <!-- Name & ID -->
+              <div class="flex flex-col items-start mt-5 space-y-4 md:space-x-3 md:flex-row md:space-y-0 md:justify-between">
+                <div class="px-4">
+                  <span class="font-light">Name: </span>
+                  <span>Jinjuta Suksuwan</span>
+                </div>
+
+                <div class="px-4 text-end">
+                  <span class="font-light">Student ID: </span>
+                  <span>103818112</span>
+                </div>
+              </div>
+
+              <div class="p-2 px-4">
+                <span class="font-light">Email: </span>
+                <span>103818112@student.swin.edu.au</span>
+              </div>
+
+              <div class="px-4 my-4 max-w-96 text-sm leading-5 tracking-wide text-center md:text-left">
+                <p>
+                  I declare that this assignment is my individual work. I have not worked collaboratively nor have I copied from any other student's work or from any other source.
+                </p>
+              </div>
+
+              <div class="flex flex-col item-center justify-between space-y-6 md:flex-row md:space-y-0 px-4 w-full">
+
+
+                <!-- Sign up -->
+                <a href="signup.php" class="md:w-full md:flex-grow  md:mr-4">
+                  <button
+                    class="w-full flex justify-center items-center p-4 space-x-4 font-bold text-zinc-800 rounded-md shadow-lg px-9 bg-lime-500 hover:bg-opacity-80 hover:shadow-md hover:shadow-lime-800 transition hover:-translate-y-0.5 duration-150">
+                    <span>Sign up</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                      class="size-4">
+                      <path
+                        fill-rule="evenodd"
+                        d="M15 8A7 7 0 1 0 1 8a7 7 0 0 0 14 0ZM4.75 7.25a.75.75 0 0 0 0 1.5h4.69L8.22 9.97a.75.75 0 1 0 1.06 1.06l2.5-2.5a.75.75 0 0 0 0-1.06l-2.5-2.5a.75.75 0 0 0-1.06 1.06l1.22 1.22H4.75Z"
+                        clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                </a>
+
+
+                <a href="login.php" class="md:w-full md:flex-grow md:mr-4">
+                  <!-- Log in -->
+                  <button class="w-full flex justify-center items-center p-4 space-x-4  rounded-md shadow-lg px-9 outline-lime-500 hover:bg-opacity-80 hover:shadow-md hover:shadow-lime-800 border transition hover:-translate-y-0.5 duration-150"">Log in</button>
+                 </a>
+               </div>
+                 <a href=" about.php">
+                    <button class="text-lime-500 font-thin text-sm px-4 pt-2 w-full md:w-auto flex justify-end items-center space-x-2"><span>About project</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                      </svg>
+                    </button>
+                </a>
+              </div>
+
+
+
+            </div>
+
+
+          </div>
+          <div class="text-lime-500 my-4 text-xs font-mono">
+            <!-- Echo from PHP -->
+            <!-- Create tables -->
+            <p><?php echo $conn_msg; ?></p>
+            <br />
+            <p><?php echo $friends_msg; ?></p>
+            <p><?php echo $myfriends_msg; ?></p>
+            <p><?php echo $friends_pop_msg; ?></p>
+            <p><?php echo $myfriends_pop_msg; ?></p>
+            <br />
+            <p><?php echo $table_msg; ?></p>
+
+            <br />
+            <br />
+
+            <p><?php
+                echo 'Current PHP version: ' . phpversion(); ?></p>
+
+          </div>
         </div>
-        <div class="flex-col">
-          <p>Student ID: 103818112</p>
-
-        </div>
-      </div>
-
-      <div class="my-4">
-        <p>
-          I declare that this assignment is my individual work. I have not worked
-          collaboratively nor have I copied from any other student's work or from
-          any other source.
-        </p>
-      </div>
-
-      <!-- Echo from PHP -->
-      <!-- Create tables -->
-
-      <p><?php echo $friends_msg; ?></p>
-      <p><?php echo $myfriends_msg; ?></p>
-      <p><?php echo $table_msg; ?></p>
-      <!-- Populate tables -->
-      <p><?php echo $friends_pop_msg; ?></p>
-      <p><?php echo $myfriends_pop_msg; ?></p>
-
-      <div class="flex flex-row justify-between my-4">
-
-        <a href="signup.php">
-          <button class="bg-blue-500 p-2 rounded-lg text-white">Sign up</button>
-        </a>
-        <a href="login.php">
-          <button class="bg-red-500 p-2 rounded-lg text-white">Log in</button>
-        </a>
-        <a href="about.php">
-          <button class="bg-orange-500 p-2 rounded-lg text-white">About</button>
-        </a>
       </div>
     </div>
-  </div>
 
-  <p>
-  <pre><?php echo $conn_msg; ?></pre>
-  </p>
+
+  </div>
 </body>
 
 </html>
