@@ -1,20 +1,25 @@
 <?php
 
-session_start(); // Start the session
+session_start();                                        // Start the session
 
-error_reporting(E_ALL); // Enable error reporting for debugging during development
+
+if (!isset($_SESSION['profile_name'])) {                // Check if the user is logged in by verifying if the session variable 'profile_name' exists
+    header("Location: index.php");                      // Redirect to home page if not logged in
+    exit();                                             // Ensure no further code is executed
+}
+
+error_reporting(E_ALL);                                 // Enable error reporting for debugging during development
 ini_set('display_errors', 1);
 
-require_once("functions/settings.php"); // Include the database connection details
+require_once("functions/settings.php");                 // Include the database connection details
 
-$conn = @mysqli_connect($host, $user, $pswd, $db); // Database connection
+$conn = @mysqli_connect($host, $user, $pswd, $db);      // Database connection
 
-$profile_name = isset($_SESSION['profile_name']) ? $_SESSION['profile_name'] : '';
-$potential_friends = []; // Array to store potential friends
+$profile_name = $_SESSION['profile_name'];              // Get profile name from session
+$potential_friends = [];                                // Array to store potential friends
 $friends_count = 0;
 
-// Pagination settings
-$results_per_page = 10;
+$results_per_page = 10;                                 // Pagination settings
 $current_page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($current_page - 1) * $results_per_page;
 
@@ -128,11 +133,11 @@ if (!$conn) {
 
                             <div class="w-1/4 text-center">
                                 <form action="./functions/add_friend.php" method="POST">
-                                    <input type="hidden" name="friend_name" value="<?php echo htmlspecialchars($friend['friend_id']); ?>">
+                                    <input type="hidden" name="friend_id" value="<?php echo htmlspecialchars($friend['friend_id']); ?>">
                                     <button type="submit" class="bg-red-500 p-2 rounded-lg text-white">Add friend</button>
                                 </form>
                             </div>
-                            <div class="w-1/4">
+                            <div class="w-1/4 text-center">
                                 <!-- Display mutual friend count -->
                                 <?php echo htmlspecialchars($friend['mutual_friends']); ?>
                             </div>
@@ -141,7 +146,7 @@ if (!$conn) {
                     <?php endforeach; ?>
                 <?php else: ?>
                     <div class="p-4">
-                        No potential new friends found.
+                        No potential new friends found. Add new frends.
                     </div>
                 <?php endif; ?>
 
@@ -168,7 +173,7 @@ if (!$conn) {
                 <div class="flex flex-col item-center justify-between space-y-6 md:flex-row md:space-x-4 md:space-y-0 w-full">
                     <!-- Register -->
                     <a href="friendlist.php">
-                        <button type='button' class='w-full flex md:flex-grow  justify-center items-center p-4 space-x-4 font-bold text-zinc-800 rounded-md shadow-lg px-9 bg-lime-500 hover:bg-opacity-80 hover:shadow-md hover:shadow-lime-800 transition hover:-translate-y-0.5 duration-150'>Add new friends</button>
+                        <button type='button' class='w-full flex md:flex-grow  justify-center items-center p-4 space-x-4 font-bold text-zinc-800 rounded-md shadow-lg px-9 bg-lime-500 hover:bg-opacity-80 hover:shadow-md hover:shadow-lime-800 transition hover:-translate-y-0.5 duration-150'>See your friends</button>
                     </a>
 
                     <!-- Clear -->
