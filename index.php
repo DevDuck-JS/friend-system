@@ -158,10 +158,9 @@ if (!$conn) {
   <div class="">
     <!-- Background / Parent container -->
     <div class="flex items-center justify-center h-screen text-white">
-      <div class="flex flex-col mx-20">
+      <div class="flex flex-col mx-20 m-4">
         <div class="bg-zinc-800 p-2 rounded-2xl">
           <!-- Card -->
-
           <div class="flex flex-col md:flex-row rounded-l-lg">
             <!-- Image -->
             <img
@@ -172,9 +171,9 @@ if (!$conn) {
 
             <!-- Content -->
             <div class="p-2 md:-12 font-thin">
-              <div class="items-center my-4">
+              <div class="items-center mt-2">
                 <h1 class="text-3xl font-medium text-center md:text-left px-4">My friend System</h1>
-                <h1 class="text-xl text-center md:text-left px-4">Assigment Home Page</h1>
+                <h1 class="text-2xl text-center md:text-left px-4">Assigment Home Page</h1>
               </div>
 
               <!-- Name & ID -->
@@ -201,6 +200,7 @@ if (!$conn) {
                 </p>
               </div>
 
+              <!-- Buttons -->
               <div class="flex flex-col item-center justify-between space-y-6 md:flex-row md:space-y-0 px-4 w-full">
 
 
@@ -225,46 +225,45 @@ if (!$conn) {
 
                 <a href="login.php" class="md:w-full md:flex-grow md:mr-4">
                   <!-- Log in -->
-                  <button class="w-full flex justify-center items-center p-4 space-x-4  rounded-md shadow-lg px-9 outline-lime-500 hover:bg-opacity-80 hover:shadow-md hover:shadow-lime-800 border transition hover:-translate-y-0.5 duration-150"">Log in</button>
-                 </a>
-               </div>
-                 <a href=" about.php">
-                    <button class="text-lime-500 font-thin text-sm px-4 pt-2 w-full md:w-auto flex justify-end items-center space-x-2"><span>About project</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
-                      </svg>
-                    </button>
+                  <button class="w-full flex justify-center items-center p-4 space-x-4  rounded-md shadow-lg px-9 outline-lime-500 hover:bg-opacity-80 hover:shadow-md hover:shadow-lime-800 border transition hover:-translate-y-0.5 duration-150">Log in</button>
                 </a>
               </div>
-
-
-
+              <a href=" about.php">
+                <button class="text-lime-500 font-thin text-sm px-4 pt-2 w-full md:w-auto flex justify-end items-center space-x-2"><span>About project</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                  </svg>
+                </button>
+              </a>
             </div>
 
 
-          </div>
-          <div class="text-lime-500 my-4 text-xs font-mono">
-            <!-- Echo from PHP -->
-            <!-- Create tables -->
-            <p><?php echo $conn_msg; ?></p>
-            <br />
-            <p><?php echo $friends_msg; ?></p>
-            <p><?php echo $myfriends_msg; ?></p>
-            <p><?php echo $friends_pop_msg; ?></p>
-            <p><?php echo $myfriends_pop_msg; ?></p>
-            <br />
-            <p><?php echo $table_msg; ?></p>
-
-            <br />
-            <br />
-
-            <p><?php
-                echo 'Current PHP version: ' . phpversion(); ?></p>
 
           </div>
+
+
+        </div>
+        <div class="text-lime-500 my-4 text-xs font-mono">
+          <!-- Echo from PHP -->
+          <!-- Create tables -->
+          <p><?php echo $conn_msg; ?></p>
+          <br />
+          <p><?php echo $friends_msg; ?></p>
+          <p><?php echo $myfriends_msg; ?></p>
+          <p><?php echo $friends_pop_msg; ?></p>
+          <p><?php echo $myfriends_pop_msg; ?></p>
+          <br />
+          <p><?php echo $table_msg; ?></p>
+
+          <br />
+          <br />
+
+          <p><?php
+              echo 'Current PHP version: ' . phpversion(); ?></p>
         </div>
       </div>
     </div>
+  </div>
 
 
   </div>
