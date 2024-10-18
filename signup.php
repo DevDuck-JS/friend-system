@@ -88,7 +88,14 @@ if (!$conn) {
         }
 
         if (!$is_valid) {
-            $home_button = "<a href='index.php' class='bg-red-500 p-2 rounded-lg text-white'>Home</a>";
+            $home_button = "<a href='index.php' class='w-full flex justify-center items-center p-4 space-x-2 rounded-md shadow-lg px-9 text-lime-500  hover:bg-opacity-80 hover:shadow-md hover:shadow-lime-800  transition hover:-translate-y-0.5 duration-150'><span>Return home</span>
+            
+            <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1' stroke='currentColor' class='size-6'>
+            <path stroke-linecap='round' stroke-linejoin='round' d='m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25' />
+            </svg>
+
+
+            </a>";
         }
     }
     mysqli_close($conn);
@@ -105,53 +112,84 @@ if (!$conn) {
     <title>My Friend System | Sign up</title>
 </head>
 
-<body>
-    <form action="signup.php" method="POST">
-        <div class="container w-[50%] px-10 mx-auto my-10 border-solid border-2 rounded-xl border-red-100">
-            <div class="flex flex-col items-center my-4">
-                <h1 class="text-3xl">My friend System</h1>
-                <h1>Registration Page</h1>
-            </div>
+<body class="bg-zinc-700">
+    <div class="flex items-center justify-center h-screen text-white font-thin">
 
-            <!-- Flex for Name & ID -->
-            <div class="flex flex-col my-3 p-10">
-                <div class="d-flex">
-                    <label for="email">Email</label>
-                    <input type="text" name="email" value="<?php echo htmlspecialchars($email); ?>" placeholder="kangaroo@zoo.com.au">
-                    <!-- Display email error message -->
-                    <?php if (!empty($email_error)) echo "<p class='text-red-500'>$email_error</p>"; ?>
-                </div>
-                <div class="flex-row">
-                    <label for="profile">Profile Name</label>
-                    <input type="text" name="profile" value="<?php echo htmlspecialchars($profile_name); ?>" placeholder="kangaroo">
-                    <!-- Display profile name error message -->
-                    <?php if (!empty($profile_error)) echo "<p class='text-red-500'>$profile_error</p>"; ?>
-                </div>
-                <div class="flex-row">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" placeholder="**********">
-                    <!-- Display password error message -->
-                    <?php if (!empty($password_error)) echo "<p class='text-red-500'>$password_error</p>"; ?>
-                </div>
-                <div class="flex-row">
-                    <label for="c_password">Confirm Password</label>
-                    <input type="password" name="c_password" placeholder="**********">
-                    <!-- Display confirm password error message -->
-                    <?php if (!empty($confirm_password_error)) echo "<p class='text-red-500'>$confirm_password_error</p>"; ?>
-                </div>
-            </div>
-            <div class='flex justify-around my-4'>
-                <button type='submit' class='bg-blue-500 p-2 rounded-lg text-white'>Register</button>
-                <button type='reset' class='bg-blue-500 p-2 rounded-lg text-white'>Clear</button>
+        <!-- Parent container -->
+        <div class="flex flex-col mx-20">
 
+            <!-- Card / Form -->
+            <div class="flex flex-col bg-zinc-800 rounded-2xl px-10 p-6">
+
+                <!-- Form head -->
+                <div class="flex flex-col items-center my-4 ">
+                    <h1 class="text-3xl font-medium">My friend System</h1>
+                    <h1 class="text-2xl">Registration Page</h1>
+                </div>
+                <!-- Form body -->
+                <form action="signup.php" method="POST">
+                    <div class="flex flex-col my-3 space-y-6">
+
+                        <!-- Email -->
+                        <div class="d-flex">
+                            <label for="email" class="text-slate-400">Email</label>
+                            <input type="text" name="email" class="w-full p-6 border border-gray-300 rounded-md placeholder:font-light"
+
+                                value="<?php echo htmlspecialchars($email); ?>" placeholder="kangaroo@zoo.com.au">
+
+                            <!-- Display email error message -->
+                            <?php if (!empty($email_error)) echo "<p class='text-red-500 mt-2'>$email_error</p>"; ?>
+
+                        </div>
+
+                        <!-- Profile Name -->
+                        <div class="flex-row">
+                            <label for="profile" class="text-slate-400">Profile Name</label>
+                            <input type="text" name="profile"
+
+                                class="w-full p-6 border border-gray-400 rounded-md placeholder:font-light"
+
+                                value="<?php echo htmlspecialchars($profile_name); ?>" placeholder="kangaroo">
+                            <!-- Display profile name error message -->
+                            <?php if (!empty($profile_error)) echo "<p class='text-red-500 mt-2'>$profile_error</p>"; ?>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="flex-row">
+                            <label for="password" class="text-slate-400">Password</label>
+                            <input type="password" name="password" placeholder="**********"
+
+                                class="w-full p-6 border border-gray-400 rounded-md placeholder:font-light">
+                            <!-- Display password error message -->
+                            <?php if (!empty($password_error)) echo "<p class='text-red-500 mt-2'>$password_error</p>"; ?>
+                        </div>
+
+                        <!-- Confirm password -->
+
+                        <div class="flex-row">
+                            <label for="c_password" class="text-slate-400">Confirm Password</label>
+                            <input type="password" name="c_password" placeholder="**********"
+
+                                class="w-full p-6 border border-gray-300 rounded-md placeholder:font-light">
+                            <!-- Display confirm password error message -->
+                            <?php if (!empty($confirm_password_error)) echo "<p class='text-red-500 mt-2'>$confirm_password_error</p>"; ?>
+                        </div>
+                        <div class="flex flex-col item-center justify-between space-y-6 md:flex-row md:space-x-4 md:space-y-0 w-full">
+                            <button type='submit' class='w-full flex md:flex-grow  justify-center items-center p-4 space-x-4 font-bold text-zinc-800 rounded-md shadow-lg px-9 bg-lime-500 hover:bg-opacity-80 hover:shadow-md hover:shadow-lime-800 transition hover:-translate-y-0.5 duration-150'>Register</button>
+                            <button type='reset' class="w-full flex md:flex-grow  justify-center items-center p-4 space-x-4  rounded-md shadow-lg px-9 outline-lime-500 hover:bg-opacity-80 hover:shadow-md hover:shadow-lime-800 border transition hover:-translate-y-0.5 duration-150">Clear</button>
+
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="flex flex-col items-center my-4">
+            <!-- Home button -->
+            <div class="items-center my-4">
                 <?php
                 echo $home_button;
                 ?>
             </div>
         </div>
-    </form>
+    </div>
 </body>
 
 </html>
