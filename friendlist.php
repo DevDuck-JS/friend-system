@@ -79,64 +79,82 @@ if (!$conn) {
     <title>My Friend System | Friend List</title>
 </head>
 
-<body>
-    <div class="flex flex-col items-center my-4 border-2 border-slate-500 rounded-lg w-[80%] mx-auto">
-        <div class="my-4">
-            <h1 class="text-3xl">My Friend System</h1>
-            <h1><strong><?php echo htmlspecialchars($profile_name); ?></strong>'s Friend List Page</h1>
-            <h1>Total number of friends is <strong><?php echo $total_rows; ?></strong>.</h1>
-        </div>
-        <div>
-            <table class="border-solid border-2 border-slate-500">
-                <thead>
-                    <tr>
-                        <th>Friend</th>
-                        <th>Option</th>
-                    </tr>
-                </thead>
-                <tbody class="border-solid border-2 border-slate-500">
-                    <?php if ($friends_count > 0): ?>
-                        <?php foreach ($friends_list as $friend_name): ?>
-                            <tr>
-                                <td class="px-2"><?php echo htmlspecialchars($friend_name); ?></td>
-                                <td class="px-2">
-                                    <form action="functions/unfriend.php" method="POST">
-                                        <input type="hidden" name="friend_name" value="<?php echo htmlspecialchars($friend_name); ?>">
-                                        <button type="submit" class="bg-red-500 p-2 rounded-lg text-white">Unfriend</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <tr>
-                            <td colspan="2">No friends found.</td>
-                        </tr>
-                    <?php endif; ?>
-                </tbody>
-            </table>
-        </div>
+<body class="bg-zinc-700">
+    <div class="flex items-center justify-center text-white font-thin ">
 
-        <!-- Pagination Controls -->
+        <!-- Parent container -->
+        <div class="flex flex-col mx-20 my-4">
 
-        <div class="flex justify-around my-4">
-            <div>
-                <?php if ($current_page > 1): ?>
-                    <a href="?page=<?php echo $current_page - 1; ?>" class="bg-gray-500 p-2 rounded-lg">
-                        < Previous</a>
-                        <?php endif; ?>
+            <!-- Card  -->
+            <div class="flex flex-col bg-zinc-800 rounded-2xl px-20 p-10 my-4">
 
-                        <span class="p-2">Page <?php echo $current_page; ?> of <?php echo $total_pages; ?></span>
+                <!-- Form head -->
+                <div class="flex flex-col items-center my-4 ">
+                    <h1 class="text-3xl font-medium">My Friend System</h1>
+                    <h1 class="mt-2"><strong><?php echo htmlspecialchars($profile_name); ?></strong>'s Friend List Page</h1>
 
-                        <?php if ($current_page < $total_pages): ?>
-                            <a href="?page=<?php echo $current_page + 1; ?>" class="bg-gray-500 p-2 rounded-lg">Next ></a>
-                        <?php endif; ?>
+                    <h1 class="text-sm">Total number of friends is <strong><?php echo $total_rows; ?></strong>.</h1>
+                </div>
+                <div class="flex flex-row justify-between items-center border-b-2 border-slate-500 p-2">
+                    <div class="font-bold">
+                        Your Friends
+                    </div>
+                    <div class="font-bold">
+                        Option
+                    </div>
+                </div>
+
+                <?php if ($friends_count > 0): ?>
+                    <?php foreach ($friends_list as $friend_name): ?>
+                        <div class="flex flex-row justify-between items-center border-b border-slate-500 p-2">
+                            <div class="">
+                                <?php echo htmlspecialchars($friend_name); ?>
+                            </div>
+                            <div>
+                                <form action="functions/unfriend.php" method="POST">
+                                    <input type="hidden" name="friend_name" value="<?php echo htmlspecialchars($friend_name); ?>">
+                                    <button type="submit" class="bg-red-500 p-2 rounded-lg text-white">Unfriend</button>
+                                </form>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <div class="p-4">
+                        No friends found.
+                    </div>
+                <?php endif; ?>
+
+
+
+
+                <!-- Pagination Controls -->
+                <div class="flex justify-around my-4 text-sm">
+                    <div>
+                        <?php if ($current_page > 1): ?>
+                            <a href="?page=<?php echo $current_page - 1; ?>" class="text-lime-500 p-2">
+                                < Previous</a>
+                                <?php endif; ?>
+
+                                <span class="p-2">Page <?php echo $current_page; ?> of <?php echo $total_pages; ?></span>
+
+                                <?php if ($current_page < $total_pages): ?>
+                                    <a href="?page=<?php echo $current_page + 1; ?>" class="text-lime-500 p-2 text-sm rounded-lg">Next ></a>
+                                <?php endif; ?>
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="flex flex-col item-center justify-between space-y-6 md:flex-row md:space-x-4 md:space-y-0 w-full">
+                    <!-- Register -->
+                    <a href="friendadd.php"><button type='button' class='w-full flex md:flex-grow  justify-center items-center p-4 space-x-4 font-bold text-zinc-800 rounded-md shadow-lg px-9 bg-lime-500 hover:bg-opacity-80 hover:shadow-md hover:shadow-lime-800 transition hover:-translate-y-0.5 duration-150'>Add new friends</button></a>
+
+                    <!-- Clear -->
+                    <a href="logout.php">
+                        <button type='button' class="w-full flex md:flex-grow  justify-center items-center p-4 space-x-4  rounded-md shadow-lg px-9 outline-lime-500 hover:bg-opacity-80 hover:shadow-md hover:shadow-lime-800 border transition hover:-translate-y-0.5 duration-150">Log out</button></a>
+
+                </div>
+
             </div>
-        </div>
-
-
-        <div class="flex justify-around my-4">
-            <a href="friendadd.php"><button class="bg-blue-500 p-2 rounded-lg text-white">Add Friends</button></a>
-            <a href="logout.php"><button class="bg-blue-500 p-2 rounded-lg text-white">Log out</button></a>
         </div>
     </div>
 </body>

@@ -81,42 +81,63 @@ if (!$conn) {
     <title>My Friend System | Log in</title>
 </head>
 
-<body>
-    <form action="login.php" method="POST">
-        <div class="container w-[50%] px-10 mx-auto my-10 border-solid border-2 rounded-xl border-red-100">
-            <div class="flex flex-col items-center my-4">
-                <h1 class="text-3xl">My Friend System</h1>
-                <h1>Log in Page</h1>
-            </div>
+<body class="bg-zinc-700">
 
-            <!-- Flex for Email & Password -->
-            <div class="flex flex-col my-3 p-10">
-                <div class="d-flex">
-                    <label for="email">Email</label>
-                    <input type="text" name="email" value="<?php echo htmlspecialchars($email); ?>" placeholder="kangaroo@zoo.com.au">
-                    <!-- Display email error message -->
-                    <?php if (!empty($errors['email'])) echo "<p class='text-red-500'>{$errors['email']}</p>"; ?>
+    <div class="flex items-center justify-center text-white font-thin ">
+
+        <!-- Parent container -->
+        <div class="flex flex-col mx-20 my-4">
+
+            <!-- Card / Form -->
+            <div class="flex flex-col bg-zinc-800 rounded-2xl px-10 p-6 my-4">
+
+                <!-- Form head -->
+                <div class="flex flex-col items-center my-4">
+                    <h1 class="text-3xl font-medium">My Friend System</h1>
+                    <h1 class="text-2xl">Log in Page</h1>
                 </div>
 
-                <div class="flex-row">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" placeholder="**********">
-                    <!-- Display password error message -->
-                    <?php if (!empty($errors['password'])) echo "<p class='text-red-500'>{$errors['password']}</p>"; ?>
-                </div>
+                <!-- Form body -->
+                <form action="login.php" method="POST">
+                    <div class="flex flex-col my-3 space-y-6">
 
-            </div>
-            <div class='flex justify-around my-4'>
-                <button type='submit' class='bg-blue-500 p-2 rounded-lg text-white'>Log in</button>
+                        <!-- Flex for Email & Password -->
+                        <div class="d-flex">
+                            <label for="email" class="text-slate-400">Email</label>
+                            <input type="text" name="email" value="<?php echo htmlspecialchars($email); ?>" placeholder="kangaroo@zoo.com.au"
+                                class="w-full p-6 border border-gray-300 rounded-md placeholder:font-light text-slate-700">
+                            <!-- Display email error message -->
+                            <?php if (!empty($errors['email'])) echo "<p class='text-red-500 mt-2'>{$errors['email']}</p>"; ?>
+                        </div>
 
-                <a href="index.php">
-                    <button type="button" class='bg-green-500 p-2 rounded-lg text-white'>Home</button>
-                </a>
+                        <div class="flex-row">
+                            <label for="password" class="text-slate-400">Password</label>
+                            <input type="password" name="password" placeholder="**********"
+                                class="w-full text-slate-700 p-6 border border-gray-300 rounded-md placeholder:font-light">
+                            <!-- Display password error message -->
+                            <?php if (!empty($errors['password'])) echo "<p class='text-red-500 mt-2'>{$errors['password']}</p>"; ?>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="flex flex-col item-center justify-between space-y-6 md:flex-row md:space-x-4 md:space-y-0 w-full">
+                            <!-- Login -->
+                            <button type='submit' class='w-full flex md:flex-grow justify-center items-center p-4 space-x-4 font-bold text-zinc-800 rounded-md shadow-lg px-9 bg-lime-500 hover:bg-opacity-80 hover:shadow-md hover:shadow-lime-800 transition hover:-translate-y-0.5 duration-150'>Log in</button>
+
+                            <!-- Home -->
+                            <a href="index.php"><button type="button" class="w-full flex md:flex-grow justify-center items-center p-4 space-x-4 rounded-md shadow-lg px-9 outline-lime-500 hover:bg-opacity-80 hover:shadow-md hover:shadow-lime-800 border transition hover:-translate-y-0.5 duration-150">Home</button></a>
+
+                        </div>
+
+
+                        <!-- Display connection error message, if any -->
+                        <?php if (!empty($conn_msg)) echo "<p class='text-red-500 text-center'>$conn_msg</p>"; ?>
+                    </div>
+                </form>
             </div>
-            <!-- Display connection error message, if any -->
-            <?php if (!empty($conn_msg)) echo "<p class='text-red-500 text-center'>$conn_msg</p>"; ?>
         </div>
-    </form>
+    </div>
+
+
 </body>
 
 </html>
