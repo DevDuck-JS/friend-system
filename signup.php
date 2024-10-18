@@ -126,6 +126,7 @@ if (!$conn) {
                     <h1 class="text-3xl font-medium">My friend System</h1>
                     <h1 class="text-2xl">Registration Page</h1>
                 </div>
+
                 <!-- Form body -->
                 <form action="signup.php" method="POST">
                     <div class="flex flex-col my-3 space-y-6">
@@ -174,8 +175,14 @@ if (!$conn) {
                             <!-- Display confirm password error message -->
                             <?php if (!empty($confirm_password_error)) echo "<p class='text-red-500 mt-2'>$confirm_password_error</p>"; ?>
                         </div>
+
+
+                        <!-- Buttons -->
                         <div class="flex flex-col item-center justify-between space-y-6 md:flex-row md:space-x-4 md:space-y-0 w-full">
+                            <!-- Register -->
                             <button type='submit' class='w-full flex md:flex-grow  justify-center items-center p-4 space-x-4 font-bold text-zinc-800 rounded-md shadow-lg px-9 bg-lime-500 hover:bg-opacity-80 hover:shadow-md hover:shadow-lime-800 transition hover:-translate-y-0.5 duration-150'>Register</button>
+
+                            <!-- Clear -->
                             <button type='reset' class="w-full flex md:flex-grow  justify-center items-center p-4 space-x-4  rounded-md shadow-lg px-9 outline-lime-500 hover:bg-opacity-80 hover:shadow-md hover:shadow-lime-800 border transition hover:-translate-y-0.5 duration-150">Clear</button>
 
                         </div>
