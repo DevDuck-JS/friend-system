@@ -17,6 +17,8 @@
         <div class="flex flex-col items-center my-4">
             <p>Display page count</p>
             <p>Style the page with Tailwind CSS</p>
+            <p>Login session validation - if not logged in should be thrown back to home page: friendlist, friendadd</p>
+
 
         </div>
     </div>

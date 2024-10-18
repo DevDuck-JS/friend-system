@@ -1,19 +1,24 @@
 <?php
-session_start(); // Start the session
+session_start();                                        // Start the session
+if (!isset($_SESSION['profile_name'])) {                // Check if the user is logged in by verifying if the session variable 'profile_name' exists
+    header("Location: index.php");                      // Redirect to home page if not logged in
+    exit();                                             // Ensure no further code is executed
+}
 
-error_reporting(E_ALL); // Enable error reporting for debugging during development
+
+error_reporting(E_ALL);                                 // Enable error reporting for debugging during development
 ini_set('display_errors', 1);
 
-require_once("functions/settings.php"); // Include the database connection details
+require_once("functions/settings.php");                 // Include the database connection details
 
-$conn = @mysqli_connect($host, $user, $pswd, $db); // Database connection
+$conn = @mysqli_connect($host, $user, $pswd, $db);      // Database connection
 
 $friends_count = 0;
-$profile_name = isset($_SESSION['profile_name']) ? $_SESSION['profile_name'] : '';
-$friends_list = []; // Array to store friends
+$profile_name = $_SESSION['profile_name'];              // Get profile name from session
+$friends_list = [];                                     // Array to store friends
 
-// Pagination settings
-$results_per_page = 10;
+$results_per_page = 10;                                 // Pagination settings
+
 $current_page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($current_page - 1) * $results_per_page;
 
